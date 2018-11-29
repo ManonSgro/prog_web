@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IMAC Project</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+		<link href="css/custom.css" rel="stylesheet" type="text/css" media="all">
+		<!-- web-font -->
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<!-- web-font -->
+		<!-- js -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/modernizr.custom.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta charset="utf-8" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!-- js -->
+		<!-- start-smoth-scrolling -->
+		<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+		<!-- start-smoth-scrolling -->
+	</head>
+	<body>
+		<!-- header -->
+		<div id="home" class="header-bg2">
+			<div class="header-layer2">
+				<div class="header-top">
+					<!-- container -->
+					<div class="container">
+						<div class="head-logo">
+							<a href="index.html"><img src="images/logo.png" alt="" /></a>
+						</div>
+						<div class="top-nav">
+							<div class="nav-icon">
+								<a class="right_bt" id="activator"><span> </span> </a>
+							</div>
+							 <div class="box" id="box" style="top: -1000px;">
+								 <div class="box_content">        					                         
+									<div class="box_content_center">
+										<div class="form_content">
+											<div class="menu_box_list">
+												<ul>
+													<li><a href="index.html"><span>Home</span></a></li>
+													<li><a href="rules.html"><span>Game rules</span></a></li>
+													<li><a href="about.html"><span>About</span></a></li>
+												</ul>
+											</div>
+											<a class="boxclose" id="boxclose"> <span> </span></a>
+										</div>                                  
+									</div> 	
+								</div>  	  
+							</div>
+						</div>
+					</div>
+					<!-- Dropdown -->
+							<script type="text/javascript">
+								var $ = jQuery.noConflict();
+								$(function() {
+									$('#activator').click(function(){
+										$('#box').animate({'top':'0px'},900);
+									});
+									$('#boxclose').click(function(){
+									$('#box').animate({'top':'-1000px'},900);
+									});
+								});	
+							</script>
+					<!-- //container -->
+				</div>
+			</div>
+		</div>
+		<!-- //header -->
+		<!-- contact -->
+		<div id="contact" class="contact">
+			<!-- container -->
+			<div class="container">
+				<div class="contact-info">
+					<h2>About : </h2>
+					<p>This project was carried out during the first year of study at IMAC during the Web Programming course. <br>It was made by two students: MANSION Amélia and SGRO' Manon.</p>
+				</div>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //contact -->
+		<!-- footer -->
+		<div class="footer">
+			<!-- container -->
+			<div class="container">
+				<div class="footer-left">
+					<p>Project carried out during the first year at IMAC</p>
+					<p>MANSION Amélia & SGRO' Manon</p>
+				</div>
+			</div>
+		<!-- //container -->
+		</div>
+		<!-- //footer -->
+		<script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										var defaults = {
+								  			containerID: 'toTop', // fading element id
+											containerHoverID: 'toTopHover', // fading element hover id
+											scrollSpeed: 1200,
+											easingType: 'linear' 
+								 		};
+										*/
+										
+										$().UItoTop({ easingType: 'easeOutQuart' });
+										
+									});
+								</script>
+									<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<!-- content-Get-in-touch -->
+	</body>
+</html>

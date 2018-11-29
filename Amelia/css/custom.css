@@ -1,0 +1,21 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+ 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.header-bg2{
+	background: url(../images/1.jpg) no-repeat 0px 0px;
+	background-size: cover;
+	min-height: 20px;
+	position:relative;
+}
+.header-layer2{
+	background: rgba(0, 0, 0, 0.64);
+	min-height: 20px;
+}
