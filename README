@@ -1,0 +1,11 @@
+APIs :
+
+Dictionnary :
+https://googledictionaryapi.eu-gb.mybluemix.net (works only if we ask for a specific word)
+http://api.urbandictionary.com/v0/ (Urban Dictionnary, random word easy to get)
+
+Others :
+http://poetrydb.org (db for famous poems)
+https://api.funtranslations.com/translate/emoji.json?text=house%20is%20apple
+(translate text into emojis, this one is not very effective, so we can also use additionnal scripts from Github)
+andruxnet-random-famous-quotes (API from RapidAPI, to get famous quotes from movies... - not working actually)
