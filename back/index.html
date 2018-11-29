@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Test API</title>
+  </head>
+
+  <body>
+
+    <main id="main">
+        <h1>Random word :</h1>
+        <p id="randomWord">Loading...</p>
+        
+        <h1>Definition :</h1>
+        <p id="definition">Loading...</p>
+        
+        <h1>Random Quote</h1>
+        <div id="randomQuote">
+        <div class="container">
+          <h3 class="center">Random Quote Machine</h3>
+          <div class="row">
+            <div class="col s12 m6 offset-m3">
+              <div class="card brown lighten-4">
+                <div class="card-content center"><br/>
+                  <p class="left-align" id="quote">"Art has become habitual, a dead letter with little spiritual consequence, however materially refined."</p><br/><br/>
+                  <p class="right-align" id="author">-Donald Kuspit</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="center-align" id="getquote"><a class="blue-grey darken-2 waves-effect waves-light btn">Get new quote</a></div>
+        </div>
+        </div>
+        
+        <h1>Urban Dictionnary</h1>
+        <p id="infos">Selon vous, que signifie...<span id="word">ce mot</span>.</p>
+        <ul id="answers">
+            <li class="answer">Définition 1</li>
+            <li class="answer">Définition 2</li>
+            <li class="answer">Définition 3</li>
+        </ul>
+        
+        <button type="button" onclick="printWord()">Affiche !</button>
+        
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+    
+    <script src="script_randomWord.js"></script>
+    <script src="script_WikiQuote.js"></script>
+    <script src="script_urbanDictionnary.js"></script>
+
+  </body>    
+
+</html>
