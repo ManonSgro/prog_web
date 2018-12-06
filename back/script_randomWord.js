@@ -1,7 +1,7 @@
-var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     
-function getRand(tab) {
-    var rand = tab[Math.floor(Math.random() * tab.length)];
+function getRand(array) {
+    var rand = array[Math.floor(Math.random() * array.length)];
     return rand;
 }
 
