@@ -19,3 +19,14 @@ html {
 	background: rgba(0, 0, 0, 0.64);
 	min-height: 20px;
 }
+
+.invisible {
+	display: none;
+}
+
+
+.btn-custom {
+	color: white;
+	background-color: #FA694E;
+	border-color: #FA694E;
+}

@@ -874,3 +874,8 @@ form input[type="submit"]:hover{
 		padding: 1em 0;
 	}
 }
+
+#submitButton:disabled{
+    background-color: #aaa;
+    border: none;
+}

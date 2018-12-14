@@ -1,7 +1,24 @@
-var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+//console.log("heellls");
+const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+//const divRWord = document.querySelector('#randomWord');
+const divDef = document.querySelector('#definition');
+const submitButton = document.querySelector('#submitButton');
+const inputText = document.querySelector('#inputText');
+
+const myModalLabel = document.querySelector('#myModalLabel');
+const myModalHeading = document.querySelector('#myModalHeading');
+const myModalContent = document.querySelector('#myModalContent');
+
+submitButton.disabled = true;
+                
+var randomWord = "";
+var randomDef = "";
+var synonymes = [];
+var found = false;
     
-function getRand(tab) {
-    var rand = tab[Math.floor(Math.random() * tab.length)];
+function getRand(array) {
+    var rand = array[Math.floor(Math.random() * array.length)];
     return rand;
 }
 
@@ -16,24 +33,73 @@ var firstProperty = function (obj) {
 };
 
 function getRandomWord(cat){
-    var randomWord = null;
-    var randomDefinition = null;
-    const divRWord = document.querySelector('#randomWord');
-    const divDef = document.querySelector('#definition');
-
+    
+    /* Get word */
+    
     fetch("https://api.datamuse.com/words?sp="+getRand(letters)+"*")
       .then(response => response.json())
       .then(data => {
-        const rWord = getRand(data);
-        divRWord.innerHTML = rWord.word;
-
-        fetch("https://googledictionaryapi.eu-gb.mybluemix.net/?define="+rWord.word+"&lang=en")
+        randomWord = getRand(data);
+        //divRWord.innerHTML = rWord.word;
+        
+        /* Get synonymes */
+        
+        fetch("https://api.datamuse.com/words?ml="+randomWord.word+"&max=50")
           .then(response => response.json())
           .then(data => {
-            aDefinition = firstProperty(data.meaning);
-            divDef.innerHTML = getRand(aDefinition).definition;
-          });
+            synonymes = data;
       });
+        
+            
+        /* Get definition */
+
+        fetch("https://googledictionaryapi.eu-gb.mybluemix.net/?define="+randomWord.word+"&lang=en")
+          .then(response => response.json())
+          .then(data => {
+            randomDef = getRand(firstProperty(data[0].meaning)).definition;
+
+            //Show def
+            divDef.innerHTML = randomDef;
+          });
+
+      });
+
+    //Active submitButton
+    submitButton.disabled = false;
+}
+
+function changeText(element, text){
+    element.innerHTML = text;
+}
+
+function checkWord(e){
+    e.preventDefault();
+    console.log("click");
+    var submitWord = inputText.value;
+    synonymes.forEach(function(el) {
+      if(el.word == submitWord){
+            found = true;
+        }
+    });
+    
+    if(found || submitWord==randomWord.word){
+        console.log("success");
+        submitButton.disabled = true;
+        changeText(divDef, "Loading...");
+        changeText(myModalLabel, "Congratulation !");
+        changeText(myModalHeading, "You WIN !");
+        changeText(myModalContent, "<strong>You knew how to find the right word</strong><br>Was it a fluke?");
+        getRandomWord();
+    }else{
+        submitButton.disabled = true;
+        changeText(divDef, "Loading...");
+        changeText(myModalLabel, "Oooopps...");
+        changeText(myModalHeading, "You LOSE...");
+        changeText(myModalContent, "<strong>The right word was '"+randomWord.word+"'.</strong><br>Try again !");
+        console.log("Try again !");
+        getRandomWord();
+    }
 }
 
 getRandomWord();
+submitButton.addEventListener("click", checkWord);
