@@ -44,11 +44,11 @@ function getRandomWord(cat){
         
         /* Get synonymes */
         
-        fetch("https://api.datamuse.com/words?ml="+randomWord.word+"&max=50")
+        /*fetch("https://api.datamuse.com/words?ml="+randomWord.word+"&max=50")
           .then(response => response.json())
           .then(data => {
             synonymes = data;
-      });
+      });*/
         
             
         /* Get definition */
@@ -57,7 +57,12 @@ function getRandomWord(cat){
           .then(response => response.json())
           .then(data => {
             randomDef = getRand(firstProperty(data[0].meaning)).definition;
-
+            if(getRand(firstProperty(data[0].meaning)).synonyms!=null){
+                synonymes = getRand(firstProperty(data[0].meaning)).synonyms;
+            }else{
+                synonymes = [""];
+            }
+            
             //Show def
             divDef.innerHTML = randomDef;
           });
@@ -76,8 +81,10 @@ function checkWord(e){
     e.preventDefault();
     console.log("click");
     var submitWord = inputText.value;
+        found = false;
     synonymes.forEach(function(el) {
-      if(el.word == submitWord){
+        console.log(el);
+      if(el == submitWord){
             found = true;
         }
     });
@@ -89,7 +96,6 @@ function checkWord(e){
         changeText(myModalLabel, "Congratulation !");
         changeText(myModalHeading, "You WIN !");
         changeText(myModalContent, "<strong>You knew how to find the right word</strong><br>Was it a fluke?");
-        getRandomWord();
     }else{
         submitButton.disabled = true;
         changeText(divDef, "Loading...");
@@ -97,8 +103,9 @@ function checkWord(e){
         changeText(myModalHeading, "You LOSE...");
         changeText(myModalContent, "<strong>The right word was '"+randomWord.word+"'.</strong><br>Try again !");
         console.log("Try again !");
-        getRandomWord();
     }
+    inputText.value = "";
+    getRandomWord();
 }
 
 getRandomWord();
