@@ -3,20 +3,14 @@ const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 const divDef = document.querySelector('#definition');
 const submitButton = document.querySelector('#submitButton');
 const myForm = document.querySelector('#myForm');
-const feedback = document.querySelector('.invalid-feedback');
 const inputText = document.querySelector('#inputText');
+const refreshButton = document.querySelector('#refreshButton');
 
 const myModalImage = document.querySelector("#myModalImage");
 const myModalLabel = document.querySelector('#myModalLabel');
 const myModalHeading = document.querySelector('#myModalHeading');
 const myModalContent = document.querySelector('#myModalContent');
 
-submitButton.disabled = true;
-                
-var randomWord = "";
-var randomDef = "";
-var synonymes = [""];
-var found = false;
     
 function getRand(array) {
     var rand = array[Math.floor(Math.random() * array.length)];
@@ -34,6 +28,11 @@ function firstProperty(obj) {
 };
 
 function getRandomWord(){
+    //Refresh
+    removeClass(refreshButton, "hidden");
+    changeText(divDef, "Loading...");
+    inputText.value = "";
+    randomDef = "";
     
     /* Get word */
     
@@ -62,10 +61,21 @@ function getRandomWord(){
             
             //Active submitButton
             submitButton.disabled = false;
+            
+            //Hide toogleButton
+            addClass(refreshButton, "hidden");
           });
 
       });
 
+}
+
+function addClass(element, myClass){
+    element.classList.add(myClass);
+}
+
+function removeClass(element, myClass){
+    element.classList.remove(myClass);
 }
 
 function changeText(element, text){
@@ -82,7 +92,7 @@ function changeModal(situation){
             changeImage(myModalImage,"images/error.jpg");
             changeText(myModalLabel, "Error !");
             changeText(myModalHeading, "Please");
-            changeText(myModalContent, "Enter the word corresponding the definition...");
+            changeText(myModalContent, "enter the word corresponding the definition...");
             break;
         case "win":
             changeImage(myModalImage,"images/win.jpg");
@@ -126,13 +136,18 @@ function checkWord(e){
         }
         
         //Get new word
-        changeText(divDef, "Loading...");
-        inputText.value = "";
-        randomDef = "";
         getRandomWord();
     }
     
 }
+
+//Initialize
+var randomWord = "";
+var randomDef = "";
+var synonymes = [""];
+var found = false;
+
+submitButton.disabled = true;
 
 //First call
 getRandomWord();
