@@ -82,7 +82,7 @@ function changeModal(situation){
             changeImage(myModalImage,"images/error.jpg");
             changeText(myModalLabel, "Error !");
             changeText(myModalHeading, "Please");
-            changeText(myModalContent, "enter the word corresponding the definition...");
+            changeText(myModalContent, "Enter the word corresponding the definition...");
             break;
         case "win":
             changeImage(myModalImage,"images/win.jpg");

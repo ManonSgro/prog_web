@@ -196,31 +196,31 @@ ul.button li a:hover{
 	margin:0;
 	color:#808080;
 }
-.creative{
+.culturegame{
 	background:url(../images/icons.png) no-repeat 0px 0px;
 	width:108px;
 	height:108px;
 	margin:0 auto;
 }
-.skills{
+.knowledge{
 	background: url(../images/icons.png) no-repeat -109px 0px;
 	width:108px;
 	height:108px;
 	margin:0 auto;
 }
-.help{
+.fun{
 	background: url(../images/icons.png) no-repeat -219px 0px;
 	width:108px;
 	height:108px;
 	margin:0 auto;
 }
-.service-left:hover div.creative{
+.service-left:hover div.culturegame{
 	background: url(../images/icons.png) no-repeat 0px -115px;
 }
-.service-middle:hover div.skills{
+.service-middle:hover div.knowledge{
 	background: url(../images/icons.png) no-repeat -109px -115px;
 }
-.service-right:hover div.help{
+.service-right:hover div.fun{
 	background: url(../images/icons.png) no-repeat -219px -115px;
 }
 /*-- stories --*/
@@ -328,21 +328,21 @@ ul.button li a:hover{
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 }
-/*-- contact --*/
-.contact{
+/*-- infoblock --*/
+.infoblock{
 	padding: 5em 0;
 }
-.contact-info{
+.infoblock-info{
 	text-align:center;
 	margin-bottom: 3em;
 }
-.contact-info h2{
+.infoblock-info h2{
 	color: #333333;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 26px;
 	margin: 0;
 }
-.contact-info p{
+.infoblock-info p{
 	color: #808080;
 	margin: 1em 0 0 0;
 	font-size: 16px
@@ -385,7 +385,7 @@ ul.button li a:hover{
 	left: 44%;
 	top: 98%;
 }
-.contact-bottom {
+.infoblock-bottom {
 	margin-top: 5em;
 }
 form input[type="text"] {
@@ -652,7 +652,7 @@ form input[type="submit"]:hover{
 		width: 46%;
 		margin: 1em;
 	}
-	.contact {
+	.infoblock {
 		padding: 2em 0;
 	}
 	.location {
@@ -813,20 +813,20 @@ form input[type="submit"]:hover{
 	.Project {
 		margin: 1em 0 .5em 0;
 	}
-	.contact-info h2 {
+	.infoblock-info h2 {
 		font-size: 24px;
 	}
 	.photography-images {
 		width: 44.8%;
 		margin: .5em;
 	}	
-	.contact {
+	.infoblock {
 		padding: 1em 0;
 	}
-	.contact-bottom {
+	.infoblock-bottom {
 		margin-top: 1em;
 	}
-	.contact-info {
+	.infoblock-info {
 		margin-bottom: 1em;
 	}
 	.map iframe {	
