@@ -8,7 +8,7 @@
 		<!-- web-font -->
 		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<!-- web-font -->
 		<!-- js -->
 		<script src="js/jquery.min.js"></script>
@@ -90,16 +90,40 @@
 					<p id="definition">Loading...</p>
 				</div>
 				<div class="contact-bottom">
-					<form>
-							<input id="inputText" type="text" class="subject" placeholder="Word" required="">
+					<form id="myForm">
+							<input id="inputText" type="text" class="subject" placeholder="Word" required="required">
 							<a href="#aboutModal" data-toggle="modal" data-target="#myModal"><input id="submitButton" type="submit" value="Send" disabled></a>
 						</form>
+                    
 					<div class="clearfix"> </div>
 				</div>
 			</div>
 			<!-- //container -->
 		</div>
 		<!-- //contact -->
+        
+        <!-- Modal -->
+        <div class="container">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title" id="myModalLabel">Congratulation !</h4>
+                        </div>
+                    <div class="modal-body">
+                        <center>
+                        <img id="myModalImage" src="images/win.jpg" max-width="140" max-height="140" border="0" class="img-circle">
+                        <h3 id="myModalHeading" class="media-heading">You WIN !</h3>
+                        <p id="myModalContent" class="text-center"><strong>You knew how to find the right word</strong><br>
+                            Was it a fluke?</p>
+                        <button type="button" class="btn btn-custom" data-dismiss="modal">Try again</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 		<!-- footer -->
 		<div class="footer">
 			<!-- container -->
@@ -112,34 +136,11 @@
 		<!-- //container -->
 		</div>
 		<!-- //footer -->
-
-		<!-- Modal -->
-		<div class="container">
-		    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		        <div class="modal-dialog">
-		            <div class="modal-content">
-		                <div class="modal-header">
-		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		                    <h4 class="modal-title" id="myModalLabel">Congratulation !</h4>
-		                    </div>
-		                <div class="modal-body">
-		                    <center>
-		                    <img src="images/win.jpg" width="140" height="140" border="0" class="img-circle">
-		                    <h3 id="myModalHeading" class="media-heading">You WIN !</h3>
-		                    <p id="myModalContent" class="text-center"><strong>You knew how to find the right word</strong><br>
-		                        Was it a fluke?</p>
-		                    <button type="button" class="btn btn-custom" data-dismiss="modal">Try again</button>
-		                    </center>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		</div>
     <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- content-Get-in-touch -->
 	<script src="js/script_randomWord.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-1.11.1.min.js"></script>
 	<!------ Include the above in your HEAD tag ---------->
 	</body>
 </html>

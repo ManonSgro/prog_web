@@ -1,11 +1,12 @@
-//console.log("heellls");
 const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-//const divRWord = document.querySelector('#randomWord');
 const divDef = document.querySelector('#definition');
 const submitButton = document.querySelector('#submitButton');
+const myForm = document.querySelector('#myForm');
+const feedback = document.querySelector('.invalid-feedback');
 const inputText = document.querySelector('#inputText');
 
+const myModalImage = document.querySelector("#myModalImage");
 const myModalLabel = document.querySelector('#myModalLabel');
 const myModalHeading = document.querySelector('#myModalHeading');
 const myModalContent = document.querySelector('#myModalContent');
@@ -14,7 +15,7 @@ submitButton.disabled = true;
                 
 var randomWord = "";
 var randomDef = "";
-var synonymes = [];
+var synonymes = [""];
 var found = false;
     
 function getRand(array) {
@@ -22,17 +23,17 @@ function getRand(array) {
     return rand;
 }
 
-var randomProperty = function (obj) {
+function randomProperty(obj) {
     var keys = Object.keys(obj)
     return obj[keys[ keys.length * Math.random() << 0]];
 };
 
-var firstProperty = function (obj) {
+function firstProperty(obj) {
     var keys = Object.keys(obj)
     return obj[keys[0]];
 };
 
-function getRandomWord(cat){
+function getRandomWord(){
     
     /* Get word */
     
@@ -40,15 +41,6 @@ function getRandomWord(cat){
       .then(response => response.json())
       .then(data => {
         randomWord = getRand(data);
-        //divRWord.innerHTML = rWord.word;
-        
-        /* Get synonymes */
-        
-        /*fetch("https://api.datamuse.com/words?ml="+randomWord.word+"&max=50")
-          .then(response => response.json())
-          .then(data => {
-            synonymes = data;
-      });*/
         
             
         /* Get definition */
@@ -56,57 +48,92 @@ function getRandomWord(cat){
         fetch("https://googledictionaryapi.eu-gb.mybluemix.net/?define="+randomWord.word+"&lang=en")
           .then(response => response.json())
           .then(data => {
-            randomDef = getRand(firstProperty(data[0].meaning)).definition;
-            if(getRand(firstProperty(data[0].meaning)).synonyms!=null){
-                synonymes = getRand(firstProperty(data[0].meaning)).synonyms;
+            randomDef = firstProperty(data[0].meaning)[0].definition;
+            
+           /* Get synonymes */
+            if(firstProperty(data[0].meaning)[0].synonyms!=undefined){
+                synonymes = firstProperty(data[0].meaning)[0].synonyms;
             }else{
                 synonymes = [""];
             }
             
             //Show def
             divDef.innerHTML = randomDef;
+            
+            //Active submitButton
+            submitButton.disabled = false;
           });
 
       });
 
-    //Active submitButton
-    submitButton.disabled = false;
 }
 
 function changeText(element, text){
     element.innerHTML = text;
 }
 
-function checkWord(e){
-    e.preventDefault();
-    console.log("click");
-    var submitWord = inputText.value;
-        found = false;
-    synonymes.forEach(function(el) {
-        console.log(el);
-      if(el == submitWord){
-            found = true;
-        }
-    });
-    
-    if(found || submitWord==randomWord.word){
-        console.log("success");
-        submitButton.disabled = true;
-        changeText(divDef, "Loading...");
-        changeText(myModalLabel, "Congratulation !");
-        changeText(myModalHeading, "You WIN !");
-        changeText(myModalContent, "<strong>You knew how to find the right word</strong><br>Was it a fluke?");
-    }else{
-        submitButton.disabled = true;
-        changeText(divDef, "Loading...");
-        changeText(myModalLabel, "Oooopps...");
-        changeText(myModalHeading, "You LOSE...");
-        changeText(myModalContent, "<strong>The right word was '"+randomWord.word+"'.</strong><br>Try again !");
-        console.log("Try again !");
-    }
-    inputText.value = "";
-    getRandomWord();
+function changeImage(element, url){
+    element.src = url;
 }
 
+function changeModal(situation){
+    switch(situation){
+        case "error":
+            changeImage(myModalImage,"images/error.jpg");
+            changeText(myModalLabel, "Error !");
+            changeText(myModalHeading, "Please");
+            changeText(myModalContent, "enter the word corresponding the definition...");
+            break;
+        case "win":
+            changeImage(myModalImage,"images/win.jpg");
+            changeText(myModalLabel, "Congratulation !");
+            changeText(myModalHeading, "You WIN !");
+            changeText(myModalContent, "<strong>You knew how to find the right word</strong><br>Was it a fluke?");
+            break;
+        case "lose":
+            changeImage(myModalImage,"images/lose.jpg");
+            changeText(myModalLabel, "Oooopps...");
+            changeText(myModalHeading, "You LOSE...");
+            changeText(myModalContent, "<strong>The right word was '"+randomWord.word+"'.</strong><br>Try again !");
+            break;
+    }
+    
+}
+
+function checkWord(e){
+    e.preventDefault();
+    
+    var submitWord = inputText.value;
+    
+    if(submitWord=="" || randomDef==""){
+        //Error
+        changeModal("error");
+    }else{  
+        
+        //Search for synonymes
+        found = false;
+        synonymes.forEach(function(el) {
+          if(el == submitWord){
+                found = true;
+            }
+        });
+        
+        //Check if word is valid
+        if(found || submitWord==randomWord.word){
+            changeModal("win");
+        }else{
+            changeModal("lose");
+        }
+        
+        //Get new word
+        changeText(divDef, "Loading...");
+        inputText.value = "";
+        randomDef = "";
+        getRandomWord();
+    }
+    
+}
+
+//First call
 getRandomWord();
-submitButton.addEventListener("click", checkWord);
+submitButton.addEventListener('click', checkWord);

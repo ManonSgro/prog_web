@@ -879,3 +879,10 @@ form input[type="submit"]:hover{
     background-color: #aaa;
     border: none;
 }
+
+img{
+    width: auto;
+    height: auto;
+    
+    margin-bottom: 10px;
+}
